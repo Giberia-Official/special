@@ -405,7 +405,7 @@
     <div style="position: absolute; left: 400px;">
 
 
-      <p style="font-family: times; text-align: right;"><small>v1.0503.1715</small></p>
+      <p style="font-family: times; text-align: right;"><small>v1.0524.1244</small></p>
 
       <h1 style="font-family: avenir"> Digital Planner </h1>
       <div id="tasks"></div>
@@ -443,7 +443,7 @@
           console.log(storedItem2);
           localStorage.getItem("storedItem");
 
-          if (storedItem == null){
+          if (storedItem == null || storedItem == "true"){
             alert("Are you new to this planner?");
             document.getElementById("tasks").innerHTML = ""
             idList = [0];
@@ -461,7 +461,7 @@
 
     <div>
       <div class="funrectangle" style="width: 300px; position: absolute; left: 40px"></div>
-      <div class="funrectangle" style="height:30px; width: 300px; position: absolute; top: 120px; left: 380px; z-index: 2; background-color: white;"></div>
+      <!--<div class="funrectangle" style="height:30px; width: 300px; position: absolute; top: 120px; left: 380px; z-index: 2; background-color: white;"></div>-->
     </div>
 
     <div>
@@ -502,21 +502,18 @@
 
     </div>
 
-    <!-- <div> failed notification
+    <div> <!--failed notification-->
       <script>
         console.log(Notification.permission);
         if (Notification.permission === "granted"){
-          console.log("We have permissions");
+          console.log("We have permissions to send notifications");
         } else if (Notificiation.permission !== "denied"){
           Notification.requestPermission().then(permission => {
             console.log(permission);
           });
         }
-            
- 
-
       </script>
-    </div> -->
+    </div>
     <div>
       
       <h1 id='dateDisplay' style="font-family: avenir; font-weight: lighter; position: absolute; top: 36px; left:800px; color: grey"><small><small>IDK 00 - 00:00</small></small></h1>
