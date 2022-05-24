@@ -405,7 +405,7 @@
     <div style="position: absolute; left: 400px;">
 
 
-      <p style="font-family: times; text-align: right;"><small>v1.0524.1244</small></p>
+      <p style="font-family: times; text-align: right;"><small>v1.0524.1302 Github BETA Version</small></p>
 
       <h1 style="font-family: avenir"> Digital Planner </h1>
       <div id="tasks"></div>
@@ -444,7 +444,7 @@
           localStorage.getItem("storedItem");
 
           if (storedItem == null || storedItem == "true"){
-            alert("Are you new to this planner?");
+            alert("Are you new to this planner? Click colored bar to remove task. Click date to pin (doesn't always work).");
             document.getElementById("tasks").innerHTML = ""
             idList = [0];
           } else {
