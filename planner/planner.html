@@ -420,7 +420,7 @@
 
         function SavenStore(){
           let item = document.getElementById("tasks");
-          var newItem = item.outerHTML;
+          var newItem = item.innerHTML;
         
           let newItemSeparate = newItem.split("\\");
           console.log(newItemSeparate);
@@ -445,10 +445,10 @@
 
           if (storedItem == null){
             alert("Are you new to this planner?");
-            document.getElementById("tasks").outerHTML = "<div id=\"tasks\" style=\"font-family: avenir;\"></div>;"
+            document.getElementById("tasks").innerHTML = ""
             idList = [0];
           } else {
-            document.getElementById("tasks").outerHTML = storedItem;
+            document.getElementById("tasks").innerHTML = storedItem;
             localStorage.getItem("idList");
             idList = storedItem2.split(',');
           }
@@ -526,7 +526,6 @@
         setInterval(function(){updateHello()}, 30000);
 
         function updateHello(){
-          //SavenStore();
           let text = document.getElementById("dateDisplay");
           let date = new Date();
           let newDate = JSON.stringify(date);
