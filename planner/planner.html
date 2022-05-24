@@ -448,7 +448,7 @@
             document.getElementById("tasks").innerHTML = ""
             idList = [0];
           } else {
-            document.getElementById("tasks").innerHTML = storedItem;
+            document.getElementById("tasks").innerHTML = storedItem.substr(9, storedItem.length);
             localStorage.getItem("idList");
             idList = storedItem2.split(',');
           }
