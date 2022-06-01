@@ -1,0 +1,168 @@
+<html>
+	<head>
+    	<meta charset="UTF-8">
+		<style>
+			button, input, p, h1, h2, h3, h4, h5, h6{
+				font-family: avenir;
+			}
+
+			li p, a{
+				font-family: times-new-roman;
+			}
+
+			input{
+				width: 250px;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body style="background-color: aliceblue; margin-left: 40px">
+		<div style="float: left; width: 400px">
+			<h1>Smart Citation Form</h1>
+			<input id="url" placeholder="URL"/><br/><br/>
+			<input id="nw" placeholder="Name of Website"/><br/><br/>
+			<input id="na" placeholder="Name of Article"/><br/><br/>
+			<input id="afn" placeholder="Author First Name"/><br/><br/>
+			<input id="aln" placeholder="Author Last Name or Group"/><br/><br/>
+			<input id="py" placeholder="Published Year"/><br/><br/>
+			<select id="pm"><br/><br/>
+				<option value="">Published Month</option>
+				<option value="Jan">Jan</option>
+				<option value="Feb">Feb</option>
+				<option value="Mar">Mar</option>
+				<option value="Apr">Apr</option>
+				<option value="May">May</option>
+				<option value="Jun">Jun</option>
+				<option value="Jul">Jul</option>
+				<option value="Aug">Aug</option>
+				<option value="Sep">Sep</option>
+				<option value="Oct">Oct</option>
+				<option value="Sep">Sep</option>
+				<option value="Nov">Nov</option>
+				<option value="Dec">Dec</option>
+			</select><br/><br/>
+			<input id="pd" placeholder="Published Day"/><br/><br/>
+			<br/><button id="apa" onclick="apa()"><h3>Get APA Citation</h3></button>
+			<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><p style="font-family: times-new-roman;">Tata Li © 2022</p>
+			<p><a href="https://giberia-official.github.io/home/home-en">Giberia Home Page</a></p>
+			<p><a href="https://mani-cretin.github.io/MCMA-Keystone/mainpage">MCMA Home Page</a></p>
+		</div>
+
+		<div style="position: absolute; left: 401px">
+			<br/><p style="font-family: georgia;"><small>by Tata Li from Mani-Cretin Collaborative Organization</small></p>
+			<p style="font-family: georgia;"><small><small><small>Note that this citation form can only cite websites in APA format. For accuracy, please fill out as much information as possible. The creator of this program will not be responsible for any errors.</small></small></small></p>
+			<br/><ul id="citationlist" style="font-family: times-new-roman;"></ul>
+		</div>
+		
+		<script>
+
+			function apa(){
+
+				let url = document.getElementById("url").value;
+				let afn = document.getElementById("afn").value;
+				let aln = document.getElementById("aln").value;
+				let py = document.getElementById("py").value;
+				let pm = document.getElementById("pm").value;
+				let pd = document.getElementById("pd").value;
+				let nw = document.getElementById("nw").value;
+				let na = document.getElementById("na").value;
+
+				let date = new Date();
+          		let newDate = JSON.stringify(date);
+          		let year = newDate.slice(1,5);
+          		let month = newDate.slice(6,8);
+          		let day = newDate.slice(9,11);
+
+          		if (month == '01'){
+		        	newMonth = 'January';
+		        } else if (month == '02'){
+		            newMonth = 'February';
+		        } else if (month == '03'){
+		            newMonth = 'March';
+		        } else if (month == '04'){
+		            newMonth = 'April';
+		        } else if (month == '05'){
+		            newMonth = 'May';
+		        } else if (month == '06'){
+		            newMonth = 'June';
+		        } else if (month == '07'){
+		            newMonth = 'July';
+		        } else if (month == '08'){
+		            newMonth = 'Augest';
+		        } else if (month == '09'){
+		            newMonth = 'September';
+		        } else if (month == '10'){
+		            newMonth = 'October';
+		        } else if (month == '11'){
+		            newMonth = 'November';
+		        } else if (month == '12'){
+		            newMonth = 'December';
+		        } else {
+		            newMonth = 'IDK';
+		        }
+
+				let anp = "?";
+				if (afn=="" && aln==""){
+					anp = "";
+				} else if (afn=="" && aln!=""){
+					anp = aln+".&nbsp";
+				} else if (afn!="" && aln==""){
+					anp = afn+".&nbsp";
+				} else if (afn!="" && aln!="") {
+					anp = aln+",&nbsp"+afn.slice(0,1)+".&nbsp";
+				} else{
+					anp = "??"
+				}
+				// alert(anp);
+
+				let pdp = "(n.d.).&nbsp";
+				if (py==""){
+					pdp = "(n.d.).&nbsp";
+				} else {
+					if (pm==""){
+						pdp = "("+py+").&nbsp";
+					} else {
+						if (pd==""){
+							pdp = "("+py+",&nbsp"+pm+").&nbsp";
+						} else {
+							pdp = "("+py+",&nbsp"+pm+"&nbsp"+pd+").&nbsp";
+						}
+					}
+				}
+				// alert(pdp);
+
+				let nap="";
+				if (na==""){
+					nap="<i>Insert article name.</i>&nbsp";
+				} else {
+					nap="<i>"+na+".</i>&nbsp";
+				}
+				// alert(nap);
+
+				let nwp="";
+				if (nw==""){
+					nwp="";
+				} else {
+					nwp=nw+".&nbsp";
+				}
+				// alert(nwp);
+
+				urlp="";
+				if (url!=""){
+					urlp="Retrieved&nbsp"+newMonth+"&nbsp"+day+",&nbsp"+year+"&nbspfrom&nbsp"+url
+				} else {
+					urlp = ""
+				}
+				// alert(urlp)
+
+				let result = "<p>"+anp+pdp+nap+nwp+urlp+"&nbsp<p>";
+				let citationlist = document.getElementById("citationlist");
+				let newCitation = document.createElement('li');
+				newCitation.innerHTML = result;
+				citationlist.appendChild(newCitation);
+
+			}
+		</script>
+
+	</body>
+</html>
