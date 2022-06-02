@@ -1,0 +1,37 @@
+<html>
+	<head>
+		<title>Home - Giberia Special</title>
+		<meta charset="UTF-8">
+    <style>
+      p, h1, h3{
+        font-family: georgia;
+      }
+		</style>
+	</head>
+
+	<body onload="Load()" style="background-color: aliceblue;">
+
+		<header class="Header" style="background-color: #7fffd4">
+		  <h1 class="Title">Giberia Special</h1>
+		</header>
+
+		<div>
+			<p>By proceeding, you understand that information on this website can be fabricated for its sole purpose of entertainment and are willing to bear any potential consequences. If you are from Earth, do NOT open surprize.html!!!</p>
+      <h3><a href="./planner/planner">Digital Planner</a></h3>
+      <h3><a href="./cupids-calc">Cupid's Calculator</a></h3>
+      <h3><a href="./citation-machine">Smart Citation Form</a></h3>
+      <h3><a href="./surprize">Surprize</a></p>
+		</div>
+    
+		<script>
+			let storedItem = localStorage.getItem("storedItem");
+			function Load(){
+				if (storedItem == null){
+					alert("It has been detected that you are a viewer from Earth. By proceeding, you understand that information on this website can be fabricated for its sole purpose of entertainment and are willing to bear any potential consequences. If you are from Earth, do NOT open surprize.html!!!")
+				} 
+				localStorage.setItem("storedItem", true);
+			}
+
+		</script>
+	</body>
+</html>
