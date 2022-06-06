@@ -322,9 +322,8 @@
             console.log(item.outerHTML);
             console.log(newid);
 
-            idList.push(newid);
             var idx = idList.indexOf(newid+5000000000000);
-            idList.splice(idx, 1);
+            idList.splice(idx, 1, newid);
 
             idList.sort();
             console.log("idList is rearranged");
@@ -348,14 +347,13 @@
             console.log("newid has changed");
             console.log(item.outerHTML);
 
-            idList.push(newid);
             let idx = idList.indexOf(newid-5000000000000);
-            idList.splice(idx, 1);
+            idList.splice(idx, 1, newid);
 
             idList.sort();
             console.log("idList is rearranged");
             console.log(idList);
-            let idIndex = idList.indexOf(newid) +1;
+            let idIndex = idList.indexOf(newid)+1;
             
             //alert(idIndex);
             tasksList.insertBefore(item, tasksList.children[idIndex*3]);
@@ -370,13 +368,16 @@
           var item = document.getElementById(String(id)+"0");
           var date = document.getElementById(String(id)+"1");
           var tag = document.getElementById(String(id)+"2");
-          //alert(id);
+          alert(id);
           var tasksList = document.getElementById("tasks");
+
           tasksList.removeChild(item);
           tasksList.removeChild(date);
           tasksList.removeChild(tag);
 
-          var idIndex = idList.indexOf(id);
+          var idIndex = idList.indexOf(parseInt(id*10));
+          alert(idList)
+          alert(idIndex)
           idList.splice(idIndex, 1);
           console.log(idList);
         }
@@ -393,7 +394,7 @@
     <div style="position: absolute; left: 400px;">
 
 
-      <p style="font-family: times; text-align: right;"><small>v1.0606.1255</small></p>
+      <p style="font-family: times; text-align: right;"><small>v1.0606.1412</small></p>
 
       <h1> Digital Planner </h1>
       <div id="tasks"></div>
