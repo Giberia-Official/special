@@ -24,11 +24,10 @@
         padding-right: 60px;
         padding-bottom: 10px;
         padding-left: 10px;
-      font-family: avenir;
       width: 140px;
     }
 
-    a, h3, h2, h1, h4, h5, h6, div, p{
+    a, h3, h2, h1, h4, h5, h6, div, p, button, input{
       font-family: avenir;
     }
 
@@ -40,7 +39,6 @@
         border-width: 1.2px;
         padding: 8px 15px;
         width: 220px;
-        font-family: avenir;
       }
 
       .buttonBar
@@ -56,7 +54,6 @@
         height:60px;
         width:500px;
         text-align:left;
-        font-family: avenir;
 
       }
 
@@ -76,18 +73,8 @@
         height:60px;
         width:60px;
         text-align:center;
-        font-family: avenir;
         font-weight: bold;
         font-size: 30px;
-      }
-
-      .lineV {
-        border-left: 1.2px solid black;
-        height: 10000px;
-        position: absolute;
-        left: 35%;
-        margin-left: -3px;
-        top: 0;
       }
     
       .rectangle {
@@ -122,7 +109,6 @@
         border-width: 1.2px;
         height:25px;
         text-align:center;
-        font-family: avenir;
         font-weight: bold;
       }
 
@@ -136,7 +122,7 @@
     <div style="float:left; width: 35%; position: absolute; left: 80px">
 
       <br/><br/>   
-      <h1 style="font-family: avenir">Add Task</h1>
+      <h1>Add Task</h1>
 
       <br/>
 
@@ -180,17 +166,17 @@
       <br/>
       <br/>
 
-      <button type="button" class="buttonR" onclick="Create()" style="font-family: avenir" id="submit"><b><big>Add New Task</big></b></button>
+      <button type="button" class="buttonR" onclick="Create()" id="submit"><b><big>Add New Task</big></b></button>
       
 
       <br/><br/>
-      <button class="buttonR" onclick="SavenStore()" style="font-family: avenir"><b><big>Save and Store</big></b></button>
+      <button class="buttonR" onclick="SavenStore()"><b><big>Save and Store</big></b></button>
 
       <br/><br/>
-      <button class="buttonR" onclick="schedule()" id="viewScheduleButton" style="font-family: avenir; opacity: 1"><b><big>View Schedule</big></b></button>
+      <button class="buttonR" onclick="schedule()" id="viewScheduleButton" style="opacity: 1"><b><big>View Schedule</big></b></button>
 
       <br/><br/>
-      <button class="buttonR" onclick="closeSchedule()" id="closeScheduleButton" style="font-family: avenir; opacity: 0; position: relative; top: 0px"><b><big>Close Schedule</big></b></button>
+      <button class="buttonR" onclick="closeSchedule()" id="closeScheduleButton" style="opacity: 0; position: relative; top: 0px"><b><big>Close Schedule</big></b></button>
 
 
       <script>
@@ -268,27 +254,27 @@
           console.log(idList);
 
           if (subjectRaw == "Science"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #CDF6C0;');
+            newTask.setAttribute('style','background-color: #CDF6C0;');
           } else if (subjectRaw == "Math"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #F5F8C3;');
+            newTask.setAttribute('style','background-color: #F5F8C3;');
           } else if (subjectRaw == "English"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #F7B79B;');
+            newTask.setAttribute('style','background-color: #F7B79B;');
           } else if (subjectRaw == "Chinese"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #C0CAF6;');
+            newTask.setAttribute('style','background-color: #C0CAF6;');
           } else if (subjectRaw == "Humanities"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #C0E9F6;');
+            newTask.setAttribute('style','background-color: #C0E9F6;');
           } else if (subjectRaw == "Design"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #FAB4F6;');
+            newTask.setAttribute('style','background-color: #FAB4F6;');
           } else if (subjectRaw == "Drama"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #F6C0C4;');
+            newTask.setAttribute('style','background-color: #F6C0C4;');
           } else if (subjectRaw == "Music"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #F6C0C4;');
+            newTask.setAttribute('style','background-color: #F6C0C4;');
           } else if (subjectRaw == "Art"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #F6C0C4;');
+            newTask.setAttribute('style','background-color: #F6C0C4;');
           } else if (subjectRaw == "PE"){
-            newTask.setAttribute('style','font-family: avenir; background-color: #B8FFF8');
+            newTask.setAttribute('style','background-color: #B8FFF8');
           } else {
-            newTask.setAttribute('style','font-family: avenir; background-color: #CCCCCC;');
+            newTask.setAttribute('style','background-color: #CCCCCC;');
           }
 
           //I AM THE CREATOR OF THIS PROGRAM, Tata Li (李奥)
@@ -318,7 +304,7 @@
           let tag = document.getElementById(String(id)+"2");
           let newid = parseInt(id)*10;
           let item = document.getElementById(String(id)+"0");
-          let idIndex;
+          let idIndex = idList.indexOf(newid);
           // idList = this.idList;
           // tasksList = this.tasksList;
 
@@ -331,6 +317,7 @@
             item.setAttribute("id", String(newid));
             date.setAttribute("id", String(newid+1));
             tag.setAttribute("id", String(newid+2));
+            date.setAttribute("style","color: #db0000");
             console.log("newid has changed");
             console.log(item.outerHTML);
             console.log(newid);
@@ -357,6 +344,7 @@
             item.setAttribute("id", String(newid));
             date.setAttribute("id", String(newid+1));
             tag.setAttribute("id", String(newid+2))
+            date.setAttribute("style","color: black");
             console.log("newid has changed");
             console.log(item.outerHTML);
 
@@ -405,9 +393,9 @@
     <div style="position: absolute; left: 400px;">
 
 
-      <p style="font-family: times; text-align: right;"><small>v1.0524.1302 Github BETA Version</small></p>
+      <p style="font-family: times; text-align: right;"><small>v1.0606.1255</small></p>
 
-      <h1 style="font-family: avenir"> Digital Planner </h1>
+      <h1> Digital Planner </h1>
       <div id="tasks"></div>
 
     </div>
@@ -444,13 +432,22 @@
           localStorage.getItem("storedItem");
 
           if (storedItem == null || storedItem == "true"){
-            alert("Are you new to this planner? Click colored bar to remove task. Click date to pin (doesn't always work).");
+            alert("Are you new to this planner?");
             document.getElementById("tasks").innerHTML = ""
             idList = [0];
+            tasksList = document.getElementById("tasks");
+
           } else {
             document.getElementById("tasks").innerHTML = storedItem.substr(9, storedItem.length);
             localStorage.getItem("idList");
             idList = storedItem2.split(',');
+
+            for (var i=0; i<idList.length; i+=1){
+              idList[i] = parseInt(idList[i]);
+            }
+
+            tasksList = document.getElementById("tasks");
+
           }
           
         }
@@ -516,7 +513,7 @@
     </div>
     <div>
       
-      <h1 id='dateDisplay' style="font-family: avenir; font-weight: lighter; position: absolute; top: 36px; left:800px; color: grey"><small><small>IDK 00 - 00:00</small></small></h1>
+      <h1 id='dateDisplay' style="font-weight: lighter; position: absolute; top: 36px; left:800px; color: grey"><small><small>IDK 00 - 00:00</small></small></h1>
 
       <script>
         updateHello();
