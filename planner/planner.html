@@ -368,7 +368,7 @@
           var item = document.getElementById(String(id)+"0");
           var date = document.getElementById(String(id)+"1");
           var tag = document.getElementById(String(id)+"2");
-          alert(id);
+          // alert(id);
           var tasksList = document.getElementById("tasks");
 
           tasksList.removeChild(item);
@@ -376,8 +376,8 @@
           tasksList.removeChild(tag);
 
           var idIndex = idList.indexOf(parseInt(id*10));
-          alert(idList)
-          alert(idIndex)
+          // alert(idList)
+          // alert(idIndex)
           idList.splice(idIndex, 1);
           console.log(idList);
         }
