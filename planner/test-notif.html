@@ -15,7 +15,6 @@
 
         function Send(text){
           var img = "./schedule3.png"
-          var text = this.text
           var notification = new Notification('PLANNER', { body: text, icon: img, onclick: "Send('You clicked this notif')"});
           console.log("Notification sent")
         }
