@@ -3,7 +3,8 @@
   <head>
   </head>
 
-  <body>
+  <body onload="Send('Welcome to use the Digital Planner')">
+    <button id="btn" onclick="Send('Science task lab design is due in 3 days')">
     <script>
 
         if (Notification.permission === "granted"){
@@ -12,11 +13,13 @@
           Notification.requestPermission().then(permission => {console.log(permission);});
         }
 
-        var img = "/Users/tata/Desktop/federal20%reserve.png"
-        var text = "Science Lab design is due in 1 day"
-        var notification = new Notification('PLANNER', { body: text, icon: img});
-        console.log("Notification sent")
-
+        function Send(text){
+          var img = "/Users/tata/Desktop/federal20%reserve.png"
+          var text = this.text
+          var notification = new Notification('PLANNER', { body: text, icon: img, onclick: "Send('You clicked this notif')"});
+          console.log("Notification sent")
+        }
+      
       </script>
   </body>
 </html>
