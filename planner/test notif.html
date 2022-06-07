@@ -1,10 +1,10 @@
-<!DOCTYPE html>
 <html>
   <head>
+    <title>test notif</title>
   </head>
 
   <body onload="Send('Welcome to use the Digital Planner')">
-    <button id="btn" onclick="Send('Science task lab design is due in 3 days')">
+    <button id="btn" onclick="Send('Science task lab design is due in 3 days')">Click me to receive notif</button>
     <script>
 
         if (Notification.permission === "granted"){
@@ -14,12 +14,13 @@
         }
 
         function Send(text){
-          var img = "/Users/tata/Desktop/federal20%reserve.png"
+          var img = "./schedule3.png"
           var text = this.text
           var notification = new Notification('PLANNER', { body: text, icon: img, onclick: "Send('You clicked this notif')"});
           console.log("Notification sent")
         }
       
       </script>
-  </body>
-</html>
+  
+
+</body></html>
