@@ -39,6 +39,7 @@
         border-width: 1.2px;
         padding: 8px 15px;
         width: 220px;
+        height: 40px;
       }
 
       .buttonBar
@@ -130,6 +131,7 @@
       <button type="button" class="buttonR" style="height: 40px; width:140px; text-align: left; border-top-left-radius: 0px;border-bottom-left-radius: 0px; position: relative; right: 10px; bottom: 0.5px; border-left-width:0px">
       <form>
         <select id="subject">
+          <option value = ""> None </option>
           <option value = "Science"> Science </option>
           <option value = "Math"> Math </option>
           <option value = "Chinese"> Chinese </option>
@@ -140,7 +142,6 @@
           <option value = "Art"> Art </option>
           <option value = "Music"> Music </option>
           <option value = "PE"> PE </option>
-          <option value = "Other"> Other </option>
         </select>
       </form>
       </button>
@@ -155,10 +156,11 @@
       <button type="button" class="buttonR" style="height: 40px; width:140px; text-align: left; border-top-left-radius: 0px;border-bottom-left-radius: 0px; position: relative; right: 10px; bottom: 0.5px; border-left-width:0px">
       <form>
         <select id="tag">
-          <option value = "none"> None </option>
+          <option value = "None"> None </option>
           <option value = "SUMM"> Summative </option>
           <option value = "FORM"> Formative </option>
           <option value = "Prior"> Prior </option>
+          <option value = "Important"> Important </option>
         </select>
       </form>
       </button>
@@ -168,12 +170,15 @@
 
       <button type="button" class="buttonR" onclick="Create()" id="submit"><b><big>Add New Task</big></b></button>
       
-
+      <!--
       <br/><br/>
-      <button class="buttonR" onclick="SavenStore()"><b><big>Save and Store</big></b></button>
+      <button class="buttonR" onclick="SavenStore()"><b><big>Save and Store</big></b></button> -->
 
       <br/><br/>
       <button class="buttonR" onclick="schedule()" id="viewScheduleButton" style="opacity: 1"><b><big>View Schedule</big></b></button>
+
+      <br/><br/>
+      <button class="buttonR" onclick="ClearForm()"><b><big>Clear Form</big></b>
 
       <br/><br/>
       <button class="buttonR" onclick="closeSchedule()" id="closeScheduleButton" style="opacity: 0; position: relative; top: 0px"><b><big>Close Schedule</big></b></button>
@@ -185,6 +190,13 @@
         var frontpartnum = 2200;
         var backpartnum = 0;
         var tasksList = document.getElementById("tasks");
+
+        function ClearForm(){
+          document.getElementById("task").value = "";
+          document.getElementById("date").value = "";
+          document.getElementById("tag").value = "None";
+          document.getElementById("subject").value = "";
+        }
 
         function Create()
         {
@@ -212,21 +224,23 @@
           newTask.setAttribute("class","buttonBar");
           newDate.setAttribute("class","calendar");
 
-          if (tagVal == "none"){
+          if (tagVal == "None"){
             console.log("no tag");
             newTag = document.createElement("div");
-            newTag.innerHTML = String("<button style=\"position: relative; z-index: -3; bottom: 54px; left: 450px; opacity: 1;\" class=\"tagBar\">"+tagVal+"</button>");
+            newTag.innerHTML = ("<button style=\"position: relative; z-index: -3; bottom: 54px; left: 450px; opacity: 1;\" class=\"tagBar\">"+tagVal+"</button>");
           } else {
             newTag = document.createElement("div");
             //newTag.innerHTML = String(tagVal);
             //newTag.setAttribute("class", "tagBar");
             if (tagVal == "Prior"){
-              newTag.innerHTML = String("<button style=\"position: relative; z-index: 3; bottom: 54px; left: 450px; opacity: 1;\" class=\"tagBar\">"+tagVal+"</button>");
+              newTag.innerHTML = ("<button style='position: relative; z-index: 3; bottom: 54px; left: 450px; opacity: 1;' class='tagBar'>"+tagVal+"</button>");
             } else if (tagVal == "FORM"){
               //newTag.setAttribute("style", "position: relative; z-index: 3; bottom: 12px; left: -122px; opacity: 1;")
-              newTag.innerHTML = String("<button style=\"position: relative; z-index: 3; bottom: 54px; left: 440px; opacity: 1;\" class=\"tagBar\">"+tagVal+"</button>");
+              newTag.innerHTML = ("<button style='position: relative; z-index: 3; bottom: 54px; left: 440px; opacity: 1;' class='tagBar'>"+tagVal+"</button>");
             } else if (tagVal == "SUMM"){
-              newTag.innerHTML = String("<button style=\"position: relative; z-index: 3; bottom: 54px; left: 438px; opacity: 1;\" class=\"tagBar\">"+tagVal+"</button>");
+              newTag.innerHTML = ("<button style='position: relative; z-index: 3; bottom: 54px; left: 438px; opacity: 1;' class='tagBar'>"+tagVal+"</button>");
+            } else if (tagVal == "Important"){
+              newTag.innerHTML = ("<button style='position: relative; z-index: 3; bottom: 54px; left: 418px; opacity: 1;' class='tagBar'>"+tagVal+"</button>");
             }
           }
 
@@ -274,12 +288,16 @@
           } else if (subjectRaw == "PE"){
             newTask.setAttribute('style','background-color: #B8FFF8');
           } else {
-            newTask.setAttribute('style','background-color: #CCCCCC;');
+            newTask.setAttribute('style','background-color: white;');
           }
 
           //I AM THE CREATOR OF THIS PROGRAM, Tata Li (李奥)
 
-          newTask.innerHTML = subject + ": " + task;
+          if (subjectRaw != ""){
+            newTask.innerHTML = subject + ": " + task;
+          } else{
+            newTask.innerHTML = task + "&nbsp";
+          }
           newDate.innerHTML = day;
 
           //alert(idIndex);
@@ -290,8 +308,6 @@
           //tasksList.appendChild(newTask);
           //tasksList.appendChild(newBreak);
           //tasksList.appendChild(newBreak2);
-          task.value = "";
-          dateStr.value = "";
           //alert("Task Added!");
 
         }
@@ -364,12 +380,40 @@
 
         function Destroy(id)
         {
-          alert("Task Deleted!");
+          alert("Task Deleted!\nEdit task in the purple form on the left of window");
+
+          //alert(id);
           var item = document.getElementById(String(id)+"0");
           var date = document.getElementById(String(id)+"1");
           var tag = document.getElementById(String(id)+"2");
-          // alert(id);
           var tasksList = document.getElementById("tasks");
+
+          var idstr = String(id)+"0";
+          var taskpart = JSON.stringify(document.getElementById(String(id)+"0").innerHTML);
+          
+          var hasSubject = false;
+          for (var i = 0; i<taskpart.length; i+=1){
+            if (taskpart[i]==":"){
+              var subjectpart = taskpart.substring(9, i-10);
+              var contentpart = taskpart.substring(i+7, taskpart.length-7);
+              hasSubject = true;
+            }
+          } 
+
+          if (!hasSubject){
+            var contentpart = taskpart.substring(6, taskpart.length-13);
+            var subjectpart = "";
+          }
+
+          if (idstr.substring(5,9)=="0000"){
+            var datepart = "";
+          }
+          var datepart = idstr.substring(1, 5)+"-"+idstr.substring(5, 7)+"-"+idstr.substring(7, 9);
+          //alert(datepart)
+
+          document.getElementById("task").value = contentpart;
+          document.getElementById("subject").value = subjectpart;
+          document.getElementById("date").value = datepart;
 
           tasksList.removeChild(item);
           tasksList.removeChild(date);
@@ -394,7 +438,7 @@
     <div style="position: absolute; left: 400px;">
 
 
-      <p style="font-family: times; text-align: right;"><small>v1.0606.1412</small></p>
+      <p style="font-family: times; text-align: right;"><small>v1.0611.1615</small></p>
 
       <h1> Digital Planner </h1>
       <div id="tasks"></div>
@@ -412,16 +456,16 @@
           var newItem = item.innerHTML;
         
           let newItemSeparate = newItem.split("\\");
-          console.log(newItemSeparate);
+          //console.log(newItemSeparate);
           var newestItem;
-          console.log(newItemSeparate.length);
+          //console.log(newItemSeparate.length);
           for (var i = 0; i < newItemSeparate.length; i += 1) {
             newestItem = newestItem + newItemSeparate[i];
           }
 
-          console.log(newestItem);
+          //console.log(newestItem);
           //alert(idList);
-          alert("Planner Backed Up!")
+          //alert("Planner Backed Up!")
           localStorage.setItem("storedItem", newestItem);
           localStorage.setItem("idList", idList);
 
@@ -502,14 +546,20 @@
 
     <div> <!--failed notification-->
       <script>
-        console.log(Notification.permission);
+        
         if (Notification.permission === "granted"){
-          console.log("We have permissions to send notifications");
-        } else if (Notificiation.permission !== "denied"){
-          Notification.requestPermission().then(permission => {
-            console.log(permission);
-          });
+          console.log("We have permission to send notifications");
+          Send("PLANNER", "Notification permission is granted!");
+        } else if (Notification.permission !== "denied"){
+          Notification.requestPermission().then(permission => {console.log(permission);});
         }
+
+        function Send(title, text){
+          var img = "./favicon-planner-4.png"
+          var notification = new Notification(title, { body: text, icon: img);
+          console.log("Notification sent")
+        }
+
       </script>
     </div>
     <div>
@@ -518,7 +568,9 @@
 
       <script>
         updateHello();
+
         setInterval(function(){updateHello()}, 30000);
+        setInterval(function(){SavenStore()}, 5000);
 
         function updateHello(){
           let text = document.getElementById("dateDisplay");
