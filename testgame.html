@@ -1,0 +1,94 @@
+<html>
+    
+    <head>
+        <title>Manicoin Digger</title>
+        <style>
+            .clickerbutton{
+                width: 200px;
+                height: 200px;
+                border-radius: 50%;
+                font-family: avenir;
+                background-color: gold;
+            }
+            .clickerbutton::before{
+                background-color: white;
+            }
+        </style>
+    </head>
+
+    <body onload="Load()" style="margin-left:50px; width: 330px; background-color: aliceblue;">
+        <p><small><small><small>Created by Tata Li of Mani Cretin Collaborational Organization</small></small></small></p>
+        <h1 style="font-family: avenir;">Manicoin Clicker<sub><small><small>1.0</small></small></sub></h1>
+        <div style="height: 180px;"><p id="story" style="font-family: times-new-roman;"><i>Story</i></p></div>
+        <button onclick="StoryBack()">Back</button>
+        <button onclick="StoryNext()">Next</button>
+        <button id="progress_bar">N/D</button><br/><br/>
+        <button onclick="Clicked()" class="clickerbutton" style="font-family: futura;"><h1>CLICK ME</h1></button>
+        <h1 id="txtnum" style="font-family: graphik; font-weight: ;"></h1>
+
+        <script type="text/javascript">
+            var coins;
+            var phase;
+            var phase_current;
+            var txtnum = document.getElementById("txtnum");
+            var story = document.getElementById("story");
+            var progress_bar = document.getElementById("progress_bar");
+            const plot = ["Once upon a time, there was a planet called Cretintini in the Milky Way that is governed by the Great Mani Empire. One day, you arrived at this planet and discovered that the entire planet is made of manium, the rarest element in the universe, which is also the material of the Standard Intercosmic Manicoin, commonly known as the manicoin...", "You thought it would be a great idea to excavate all of the manium in this planet to forge unlimited manicoins because it would make you extremely wealthy! Without further ado, you began to dig the manium on Planet Cretintini bit by bit...", "Just so you know, you can purchase tools and machines to help you mine faster. You will also unlock more branches of the plot as you earn more money. To start off, just click the yellow coin that says \"CLICK ME\" to make your first pot of money! Or shall I say... your first pot of mani!","Hey! You're making fantastic progress. I know it can be tedious, but don't give up! Keep persisting and miracles will happen! Good luck!"]
+            setInterval(function(){Store()}, 200);
+            setInterval(function(){Update()}, 0);
+
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            function Clicked(){
+                coins += 1
+            }
+
+            function Update(){
+                txtnum.innerHTML = "You have "+String(coins)+"<s>M</s>";
+                story.innerHTML = "<i>"+plot[phase_current]+"</i>"
+                progress_bar.innerHTML = String(phase_current+1)+"/20"
+                Check();
+            }
+
+            function Check(){
+                if (coins >= 1000 && phase<3){
+                    phase = 3;
+                    phase_current = phase;
+                }
+            }
+
+            function StoryBack(){
+                if (phase_current!=0){
+                    phase_current-=1
+                }
+            }
+
+            function StoryNext(){
+                if (phase_current<phase){
+                    phase_current+=1
+                }
+            }
+
+            function Store(){
+                localStorage.setItem("coins", coins);
+                localStorage.setItem("phase", phase);
+            }
+
+            function Load(){
+                if (localStorage.getItem("coins") == null){
+                    coins = 0;
+                } else {
+                    coins = parseInt(localStorage.getItem("coins"));
+                }
+
+                if (localStorage.getItem("phase") == null){
+                    phase = 2;
+                } else {
+                    phase = parseInt(localStorage.getItem("phase"));
+                }
+                phase_current = 0;
+            }
+        </script>
+    </body>
+
+</html>
